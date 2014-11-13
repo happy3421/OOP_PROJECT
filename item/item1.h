@@ -9,6 +9,6 @@ class item1:public item {
 public:
 	item1();
 	virtual bool itemGame(int time);
-}
+};
 
 #endif

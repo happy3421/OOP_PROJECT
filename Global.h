@@ -4,6 +4,7 @@
 #define ROWS 9;
 #define COLS 9;
 #define NULL 0;
+#define TOTALITEMS 1;
 
 enum Team {ATEAM, BTEAM};
 enum Direction {NORTH, EAST, SOUTH, WEST};

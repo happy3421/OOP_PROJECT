@@ -1,13 +1,6 @@
 #include "item.h"
 using namespace std;
 
-item::item(string name, string desc, int ID, int price, bool time) {
-	setItemName(name);
-	setItemDesc(desc);
-	setItemID(ID);
-	setItemPrice(price);
-	setItemTime(time);
-}
 void item::setItemName(string name) { itemName=name; }
 string item::getItemname() { return itemName; }
 void item::setItemDesc(string desc) { itemDesc=desc; }
