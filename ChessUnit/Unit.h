@@ -1,9 +1,9 @@
-#include "Global.h"
+#include "../Global.h"
 
 #ifndef UNIT_H
 #define UNIT_H
 
-#include "Cell.h"
+#include "../InGame/Cell.h"
 
 class Unit{
 private:

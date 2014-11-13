@@ -11,29 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BlockMirror.cpp" />
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="item.cpp" />
-    <ClCompile Include="item1.cpp" />
-    <ClCompile Include="King.cpp" />
-    <ClCompile Include="Laser.cpp" />
-    <ClCompile Include="Splitter.cpp" />
-    <ClCompile Include="TriMirror.cpp" />
-    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="..\..\ChessUnit\BlockMirror.cpp" />
+    <ClCompile Include="..\..\ChessUnit\King.cpp" />
+    <ClCompile Include="..\..\ChessUnit\Laser.cpp" />
+    <ClCompile Include="..\..\ChessUnit\Splitter.cpp" />
+    <ClCompile Include="..\..\ChessUnit\TriMirror.cpp" />
+    <ClCompile Include="..\..\ChessUnit\Unit.cpp" />
+    <ClCompile Include="..\..\InGame\Board.cpp" />
+    <ClCompile Include="..\..\InGame\Cell.cpp" />
+    <ClCompile Include="..\..\item\item.cpp" />
+    <ClCompile Include="..\..\item\item1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BlockMirror.h" />
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="item.h" />
-    <ClInclude Include="item1.h" />
-    <ClInclude Include="King.h" />
-    <ClInclude Include="Laser.h" />
-    <ClInclude Include="Splitter.h" />
-    <ClInclude Include="TriMirror.h" />
-    <ClInclude Include="Unit.h" />
+    <ClInclude Include="..\..\ChessUnit\BlockMirror.h" />
+    <ClInclude Include="..\..\ChessUnit\King.h" />
+    <ClInclude Include="..\..\ChessUnit\Laser.h" />
+    <ClInclude Include="..\..\ChessUnit\Splitter.h" />
+    <ClInclude Include="..\..\ChessUnit\TriMirror.h" />
+    <ClInclude Include="..\..\ChessUnit\Unit.h" />
+    <ClInclude Include="..\..\Global.h" />
+    <ClInclude Include="..\..\InGame\Board.h" />
+    <ClInclude Include="..\..\InGame\Cell.h" />
+    <ClInclude Include="..\..\item\item.h" />
+    <ClInclude Include="..\..\item\item1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{11599B31-DAA8-4326-8C72-08697B87511C}</ProjectGuid>
