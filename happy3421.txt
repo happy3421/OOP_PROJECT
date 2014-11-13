@@ -1,1 +1,43 @@
-Global.h => 인게임에서 사용할 enum, define 정의한 파일 [인게임 공용파일]
+1.파일설명
+
+Unit.h & Unit.c => class Unit 정의
+King.h & King.c => class King
+Laser.h & Laser.c => class Laser
+BlockMirror.h & BlockMirror.c => class BlockMirror 
+TriMirror.h & TriMirror.c => class TriMirror
+Splitter.h & Splitter.c => class Splitter
+
+
+
+2. 클래스설계
+
+class Unit	//모든 체스말에 대한 base class
+------------
+alive	//살았니죽었니
+cell	//말 위치
+unittpye	//말 타입
+team	//말 팀
+---------
+=========
+생성자
+die()	//유닛죽임
+init()  //유닛초기설정
+rotate() //유닛회전
+move() //유닛이동
+reflect() //빔반사
+========
+
+
+class King/Laser/BlockMirror/TriMirror/Splitter :[상속] public Unit
+--------
+--------
+==========
+생성자 // 유닛타입지정
+===========
+
+
+
+3.코멘트
+
+Splitter가 빔을 reflect한 다음, 빔생성 하나 더해야하는데 유닛에선 할수없는부분인듯하여 빔쪼개기 구현안함(reflect멤버는 사용가능).
+

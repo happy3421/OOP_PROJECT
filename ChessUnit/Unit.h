@@ -1,8 +1,9 @@
 #include "Global.h"
-#include "Cell.h"
 
 #ifndef UNIT_H
 #define UNIT_H
+
+#include "Cell.h"
 
 class Unit{
 private:
@@ -20,4 +21,5 @@ public:
 	void move(Cell*);
 	void reflect(int&,int&, Direction&);
 };
-#endif
+
+#endif UNIT_H
