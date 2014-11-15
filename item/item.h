@@ -24,6 +24,6 @@ public:
 	void setItemTime(int time);
 	int getItemTime();
 	virtual bool itemGame(int time)=0; //Get time, run command, then return 1 if succeed
-}
+};
 
 #endif
