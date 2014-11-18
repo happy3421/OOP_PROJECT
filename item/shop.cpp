@@ -2,10 +2,8 @@
 
 using namespace std;
 
-Shop::Shop(const int* qtyi, const int goldi) {
-	for(int i=0; i<TOTALITEMS; i++) 
-		qty[i]=qtyi[i];
-	gold=goldi;
+Shop::Shop(Player &pi) {
+	player=&pi;
 }
 
 item* Shop::ip(const int n) {
@@ -28,14 +26,14 @@ item* Shop::ip(const int n) {
 void Shop::buyItem(int n) {
 	int price=0;
 	price=ip(n)->getItemPrice();
-	gold=gold-price;
-	qty[n]++;
+	player->setmoney(player->getmoney()-price);
+	player->getitem()[n]++;
 }
 
 void Shop::sellItem(int n) {
 	int price=0;
 	ip(n)->getItemPrice();
-	gold=gold+price;
-	qty[n]--;
+	player->setmoney(player->getmoney()+price);
+	player->getitem()[n]--;
 }
 

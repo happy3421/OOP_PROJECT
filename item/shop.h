@@ -8,6 +8,7 @@
 #include "item5.h"
 #include "item6.h"
 #include "../Global.h"
+#include "../Login/Player.h"
 
 using namespace std;
 
@@ -19,11 +20,10 @@ private:
 	item4 i4;
 	item5 i5;
 	item6 i6;
-	int qty[TOTALITEMS];
-	int gold;
+	Player *player;
 	item* ip(const int n);
 public:
-	Shop(const int* qtyi, const int goldi);
+	Shop(Player &pi);
 	void buyItem(const int n);
 	void sellItem(const int n);
 };
