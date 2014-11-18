@@ -5,6 +5,8 @@
 #define COLS 9;
 #define TOTALITEMS 6;
 
+#include <iostream>
+
 enum Team {ATEAM, BTEAM};
 enum Direction {NORTH, EAST, SOUTH, WEST};
 enum UnitType {KING, LASER, BLOCKMIRROR, TRIMIRROR, SPLITTER};
