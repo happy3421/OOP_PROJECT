@@ -1,13 +1,13 @@
-#ifndef ITEM1_H
-#define ITEM1_H
+#ifndef ITEM2_H
+#define ITEM2_H
 
 #include "item.h"
 
 using namespace std;
 
-class item1:public item {
+class item2:public item {
 public:
-	item1();
+	item2();
 	virtual bool itemGame(Board* board, int time);
 };
 

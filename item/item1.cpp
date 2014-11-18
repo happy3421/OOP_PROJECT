@@ -10,7 +10,7 @@ item1::item1() {
 	setItemTime(1);
 }
 
-bool item1::itemGame(int time) {
+bool item1::itemGame(Board* board, int time) {
 	if(time!=getItemTime())
 		return 0;
 	else {
