@@ -8,6 +8,9 @@ void Unit::init(Direction dir, Cell* cell, Team team){
 	this->cell=cell;
 	this->team=team;
 }
+
+UnitType Unit::getUnitType(){ return unittype; }
+
 void Unit::rotate(int CLK){
 	int dir_num=this->dir;
 	

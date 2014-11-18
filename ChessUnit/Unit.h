@@ -15,6 +15,7 @@ protected:
 	Direction dir;
 public:
 	Unit(UnitType);
+	UnitType getUnitType();
 	void die();
 	void init(Direction, Cell*, Team);
 	void rotate(int);

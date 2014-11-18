@@ -5,7 +5,7 @@ private:
 	Unit *unit;
 	int row;
 	int col;
-	bool acessible;
+	bool accessible;
 
 public:
 	int getRow();
