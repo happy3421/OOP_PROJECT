@@ -2,106 +2,139 @@
 #include "mainwindow.h"
 
 ShopWidget::ShopWidget(Player **_player, QWidget *parent)
- : QWidget(parent)
+	: QWidget(parent)
 {	
 	player=_player;
 
-	shop1=new Shop(player[0]);
-	shop2=new Shop(player[1]);
-	
+	shop[0]=new Shop(player[0]);
+	shop[1]=new Shop(player[1]);
+
 	QLabel *background=new QLabel(this);
 	background->setPixmap(QPixmap(QString::fromUtf8("Resources/test.jpg")));
 	background->setScaledContents(true);
 	background->resize(800,600);
 
-	QLabel *p1=new QLabel("1P",this);
-	p1->setGeometry(QRect(20,20,20,12));
+	QLabel *p0=new QLabel("1P",this);
+	p0->setGeometry(QRect(10,20,20,12));
 
-	QLabel *p2=new QLabel("2P",this);
-	p2->setGeometry(QRect(440,20,20,12));
-	
-	pg1=new QLabel(QString::number(player[0]->getMoney()),this);
-	pg1->setGeometry(QRect(320,20,60,12));
-	pg1->setAlignment(Qt::AlignRight);
+	QLabel *p1=new QLabel("2P",this);
+	p1->setGeometry(QRect(410,20,20,12));
+
+	pg[0]=new QLabel(QString::number(player[0]->getMoney()),this);
+	pg[0]->setGeometry(QRect(290,20,60,12));
+	pg[0]->setAlignment(Qt::AlignRight);
+
+	QLabel *g0=new QLabel(" Gold",this);
+	g0->setGeometry(QRect(350,20,30,12));
+	g0->setAlignment(Qt::AlignRight);
+
+	pg[1]=new QLabel(QString::number(player[1]->getMoney()),this);
+	pg[1]->setGeometry(QRect(690,20,60,12));
+	pg[1]->setAlignment(Qt::AlignRight);
 
 	QLabel *g1=new QLabel(" Gold",this);
-	g1->setGeometry(QRect(380,20,30,12));
+	g1->setGeometry(QRect(750,20,30,12));
 	g1->setAlignment(Qt::AlignRight);
-	
-	pg2=new QLabel(QString::number(player[1]->getMoney()),this);
-	pg2->setGeometry(QRect(740,20,60,12));
-	pg2->setAlignment(Qt::AlignRight);
 
-	QLabel *g2=new QLabel(" Gold",this);
-	g2->setGeometry(QRect(800,20,30,12));
-	g2->setAlignment(Qt::AlignRight);
+	QScrollArea *list[2];
+	QPushButton *ii[2][9];
+	QSignalMapper *m[2][9];
+	QLabel *in[2][9];
 
-	QLabel *q1=new QLabel("Quantity",this);
-	q1->setGeometry(QRect(260,400,50,16));
-	
-	QLabel *q2=new QLabel("Quantity",this);
-	q2->setGeometry(QRect(680,400,50,16));
-	
-	sb1=new QSpinBox(this);
-	sb1->setGeometry(QRect(320,400,91,16));
-	sb1->setAlignment(Qt::AlignRight);
-		
-	sb2=new QSpinBox(this);
-	sb2->setGeometry(QRect(740,400,91,16));
-	sb2->setAlignment(Qt::AlignRight);
-		
-	QScrollArea *list1=new QScrollArea(this);
-	list1->setGeometry(QRect(20,50,390,320));	
-	
-	QLabel *ii11=new QLabel(list1);
-	ii11->setPixmap(QPixmap(QString::fromUtf8("Resources/undo.png")));
-	ii11->setGeometry(QRect(20,20,50,50));
-	ii11->setScaledContents(true);
+	list[0]=new QScrollArea(this);
+	list[0]->setGeometry(QRect(10,50,380,400));	
 
-	QLabel *it11=new QLabel("Undo",list1);
-	it11->setGeometry(QRect(20,70,50,12));
-	it11->setAlignment(Qt::AlignHCenter);
+	list[1]=new QScrollArea(this);
+	list[1]->setGeometry(QRect(410,50,370,400));
 
-	rb11=new QRadioButton(list1);
-	rb11->setGeometry(QRect(90,30,16,21));
+	for(int i=0; i<2; i++) {
+		for(int j=0; j<ITEMTYPE_NUM; j++) {
+			int r=j%4;
+			int c=j/4;
+			ii[i][j]=new QPushButton(list[i]);
+			ii[i][j]->setIcon(QPixmap(QString::fromStdString(shop[i]->ip(j)->getImage())));
+			ii[i][j]->setIconSize(QSize(70,70));
+			ii[i][j]->setGeometry(QRect(20+90*r,20+110*c,70,70));
+			ii[i][j]->setFlat(1);
+			m[i][j]=new QSignalMapper(this);
+			m[i][j]->setMapping(ii[i][j], j);
+			QObject::connect(ii[i][j],SIGNAL(clicked()), m[i][j], SLOT(map()));
+			QObject::connect(m[i][j], SIGNAL(mapped(int)), this, SLOT(buy0(int)));	
 
-	QScrollArea *list2=new QScrollArea(this);
-	list2->setGeometry(QRect(440,50,390,320));
+			in[i][j]=new QLabel(QString::fromStdString(shop[i]->ip(j)->getName()),list[i]);
+			in[i][j]->setGeometry(QRect(20+90*r,90+110*c,70,20));
+			in[i][j]->setAlignment(Qt::AlignHCenter);
+		}
+	}
 
-	QPushButton *buy1;
-	buy1 = new QPushButton("Buy",this);
-	buy1->setGeometry(QRect(360,430,50,30));
-	QObject::connect(buy1, SIGNAL(clicked()), this, SLOT(buy1()));	
-	
-	QPushButton *buy2;
-	buy2 = new QPushButton("Buy",this);
-	buy2->setGeometry(QRect(780,430,50,30));
-	QObject::connect(buy2, SIGNAL(clicked()), this, SLOT(buy2()));	
-	
 	QPushButton *back;
 	back = new QPushButton("Back",this);
-	back->setGeometry(QRect(730,480,100,50));
+	back->setGeometry(QRect(680,480,100,50));
 	QObject::connect(back, SIGNAL(clicked()), this, SLOT(back()));	
 }
-
+Player* ShopWidget::getPlayer(int i) {
+	return player[i];
+}
+Shop* ShopWidget::getShop(int i) {
+	return shop[i];
+}
+QLabel* ShopWidget::getGold(int i) {
+	return pg[i];
+}
+void ShopWidget::buy0(int iid) {
+	newWidget= new BuyWidget(this,0,iid,0);
+}
+void ShopWidget::buy1(int iid) {
+	newWidget= new BuyWidget(this,1,iid,0);
+}
 void ShopWidget::back() {
 	MainWindow* mainwindow;
 	mainwindow=static_cast<MainWindow*>(this->parentWidget());
 	mainwindow->setWidget(SELECTWIDGET);
 }
+BuyWidget::BuyWidget(ShopWidget* swi, int pidi, int iidi, QWidget* parent)
+	: QWidget(parent)
+{
+	sw=swi;
+	pid=pidi;
+	iid=iidi;
+	Item* item=sw->getShop(pid)->ip(iid);
 
-void ShopWidget::buy1() {
-	int i=0;
-	int n=sb1->value();
-	if(rb11->isChecked())
-		i=1;
-	shop1->buyItem(i,n);
-	pg1->setText(QString::number(player[0]->getMoney()));
+	QLabel *background=new QLabel(this);
+	background->setPixmap(QPixmap(QString::fromUtf8("Resources/test.jpg")));
+	background->setScaledContents(true);
+	background->resize(350,180);
+
+	QLabel *ii=new QLabel(this);
+	ii->setGeometry(QRect(20,20,80,80));
+	ii->setPixmap(QPixmap(QString::fromStdString(item->getImage())));
+	ii->setScaledContents(true);
+
+	QLabel *iname=new QLabel(QString::fromStdString(item->getName()), this);
+	iname->setGeometry(QRect(120,20,200,20));
+	iname->setAlignment(Qt::AlignHCenter);
+
+	QLabel *idesc=new QLabel(QString::fromStdString(item->getDesc()), this);
+	idesc->setGeometry(QRect(120,60,200,60));
+	idesc->setAlignment(Qt::AlignTop);
+
+	isb=new QSpinBox(this);
+	isb->setGeometry(QRect(40,110,40,20));
+	isb->setMinimum(1);
+	isb->setVisible(1);
+
+	QPushButton *buy=new QPushButton("Buy", this);
+	buy->setGeometry(QRect(70,140,80,30));
+	QObject::connect(buy,SIGNAL(clicked()), this, SLOT(buy()));
+
+	QPushButton *cancel=new QPushButton("Cancel", this);
+	cancel->setGeometry(QRect(200,140,80,30));
+	QObject::connect(cancel,SIGNAL(clicked()), this, SLOT(close()));
+
+	this->show();
 }
-
-void ShopWidget::buy2() {
-	int i=1;
-	int n=sb2->value();
-	shop2->buyItem(i,n);
-	pg2->setText(QString::number(player[1]->getMoney()));
+void BuyWidget::buy() {
+	int n=isb->value();
+	sw->getShop(pid)->buyItem(iid,isb->value());
+	sw->getGold(pid)->setText(QString::number(sw->getPlayer(pid)->getMoney()));
 }

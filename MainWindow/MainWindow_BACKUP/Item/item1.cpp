@@ -3,11 +3,12 @@
 using namespace std;
 
 Item1::Item1() { 
-	name="무르기";
-	desc="자신의 마지막 이동을 취소한다.";
+	name="Undo";
+	desc="Undo your last move.";
 	ID=1;
 	price=1000;
 	time=1;
+	image="Resources/undo.png";
 }
 
 bool Item1::itemGame(Board* board, int _time) {

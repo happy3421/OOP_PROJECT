@@ -21,8 +21,8 @@ private:
 	Item5 item5;
 	Item6 item6;
 	Player *player;
-	Item* ip(const int);
 public:
+	Item* ip(const int);
 	Shop(Player*);
 	void buyItem(const int, const int);
 	void sellItem(const int, const int);

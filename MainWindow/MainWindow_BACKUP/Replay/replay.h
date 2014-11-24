@@ -7,7 +7,7 @@ class Record{
 private:
 	Player* record_playerone;
 	Player* record_playertwo;
-	string P1Win; 
+	string P1Win;;
 	string P1Lose;
 	string P2Win;
 	string P2Lose;
@@ -20,7 +20,7 @@ public:
 };
 
 class Replay: public Record{
-private:
+private:	
 	int winOne;
 	int winTwo;
 	TEAM ongoingTeam;

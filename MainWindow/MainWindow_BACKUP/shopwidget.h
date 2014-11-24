@@ -4,7 +4,7 @@
 #include <QtWidgets/qpushbutton.h>
 #include <QtWidgets/qspinbox.h>
 #include <QtWidgets/qscrollarea.h>
-#include <QtWidgets/qradiobutton.h>
+#include <qsignalmapper.h>
 #include "player.h"
 #include "item/shop.h"
 #include "global.h"
@@ -12,28 +12,29 @@ class ShopWidget : public QWidget{
 	Q_OBJECT
 public:
 	ShopWidget(Player**, QWidget* parent=0);
+	Shop* getShop(int i);
+	Player* getPlayer(int i);
+	QLabel* getGold(int i);
 private slots:
-	void buy1();
-	void buy2();
+	void buy0(int iid);
+	void buy1(int iid);
 	void back();
 private:
-	QLabel* pg1;
-	QLabel* pg2;
-	QSpinBox* sb1;
-	QSpinBox* sb2;
-	QRadioButton* rb11;
-	QRadioButton* rb12;
-	QRadioButton* rb13;
-	QRadioButton* rb14;
-	QRadioButton* rb15;
-	QRadioButton* rb16;
-	QRadioButton* rb21;
-	QRadioButton* rb22;
-	QRadioButton* rb23;
-	QRadioButton* rb24;
-	QRadioButton* rb25;
-	QRadioButton* rb26;
+	QWidget* newWidget;
+	QLabel* pg[2];
 	Player** player;
-	Shop* shop1;
-	Shop* shop2;
+	Shop *shop[2];
+};
+
+class BuyWidget:public QWidget{
+	Q_OBJECT
+public:
+	BuyWidget(ShopWidget* swi, int pid, int iid, QWidget* parent=0);
+private slots:
+	void buy();
+private:
+	int pid;
+	int iid;
+	ShopWidget* sw;
+	QSpinBox* isb;
 };

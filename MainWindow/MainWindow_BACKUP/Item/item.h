@@ -13,12 +13,14 @@ protected:
 	int ID;
 	int price;
 	int time; //0=Before Game, 1=In Your Turn
+	string image;
 public:
 	string getName();
 	string getDesc();
 	int getID();
 	int getPrice();
 	int getTime();
+	string getImage();
 	virtual bool itemGame(Board*, int)=0; //Get time, run command, then return 1 if succeed
 };
 

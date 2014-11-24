@@ -1,8 +1,10 @@
-#include <iostream>
-#include "global.h"
-using namespace std;
 #ifndef Player_h
 #define Player_h
+
+#include <iostream>
+#include "global.h"
+
+using namespace std;
 
 class Player
 {
