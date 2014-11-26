@@ -32,7 +32,7 @@ SelectWidget::SelectWidget(QWidget *parent)
 void SelectWidget::goToGame(){
 	MainWindow* mainwindow;
 	mainwindow=static_cast<MainWindow*>(this->parentWidget());
-	mainwindow->setWidget(GAMEWIDGET);
+	mainwindow->setWidget(ITEMLISTWIDGET);
 }
 void SelectWidget::goToTutorial(){
 	MainWindow* mainwindow;

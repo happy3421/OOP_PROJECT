@@ -59,7 +59,10 @@ ShopWidget::ShopWidget(Player **_player, QWidget *parent)
 			m[i][j]=new QSignalMapper(this);
 			m[i][j]->setMapping(ii[i][j], j);
 			QObject::connect(ii[i][j],SIGNAL(clicked()), m[i][j], SLOT(map()));
-			QObject::connect(m[i][j], SIGNAL(mapped(int)), this, SLOT(buy0(int)));	
+			if(i==0)
+				QObject::connect(m[i][j], SIGNAL(mapped(int)), this, SLOT(buy0(int)));	
+			else
+				QObject::connect(m[i][j], SIGNAL(mapped(int)), this, SLOT(buy1(int)));	
 
 			in[i][j]=new QLabel(QString::fromStdString(shop[i]->ip(j)->getName()),list[i]);
 			in[i][j]->setGeometry(QRect(20+90*r,90+110*c,70,20));

@@ -143,6 +143,15 @@
     <ClCompile Include="Replay\replay.cpp">
       <Filter>Header Files\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_itemlistwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_itemlistwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="itemlistwidget.cpp">
+      <Filter>Header Files\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="dialog.h">
@@ -167,6 +176,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="statuswidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="itemlistwidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

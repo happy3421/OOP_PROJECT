@@ -5,6 +5,7 @@
 #include "tutorialwidget.h"
 #include "shopwidget.h"
 #include "statuswidget.h"
+#include "itemlistwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -57,6 +58,10 @@ void MainWindow::widgetChange(){
 		break;
 	case SELECTWIDGET:
 		widget= new SelectWidget(this);
+		this->setCentralWidget(widget);
+		break;
+	case ITEMLISTWIDGET:
+		widget= new ItemListWidget(player, this);
 		this->setCentralWidget(widget);
 		break;
 	case TUTORIALWIDGET:
